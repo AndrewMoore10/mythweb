@@ -1,5 +1,6 @@
 ##
 # mythweb configuration for nginx and php-fpm
+# dependencies "php-fpm"
 #
 # please modify before use
 ##
@@ -22,8 +23,8 @@ server {
 
 	# Configure this section for HTTP Basic Auth
 	location / {
-		auth_basic "MythWeb";
-		auth_basic_user_file mythweb.passwd;
+		#auth_basic "MythWeb";
+		#auth_basic_user_file mythweb.passwd;
 		index /var/www/mythweb/mythweb.php;
 		try_files $uri @handler;
 	}
@@ -39,8 +40,30 @@ server {
 		fastcgi_param   db_name  mythconverg;
 		fastcgi_param   db_login mythtv;
 		fastcgi_param   db_password mythtv;
+		# Uncomment the appropirate version of fpm socket
+		#fastcgi_pass	unix:/var/run/php/php7.2-fpm.sock;
 		fastcgi_pass	unix:/var/run/php5-fpm.sock;
 	}
+
+	# Sets up the pass-through to fastcgiwrap for perl
+
+    location ~ [^/]\.pl(/|$) {
+
+        fastcgi_split_path_info ^(.+?\.pl)(/.*)$;
+
+        # Disable gzip (it makes scripts feel slower since they have to complete before getting gzipped)
+        gzip off;
+
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;
+        include fastcgi_params;
+
+		fastcgi_param   SCRIPT_FILENAME	$document_root$fastcgi_script_name;
+		fastcgi_param   PATH_INFO $fastcgi_path_info;
+		fastcgi_param   db_server localhost;
+		fastcgi_param   db_name  mythconverg;
+		fastcgi_param   db_login mythtv;
+		fastcgi_param   db_password mythtv;
+    }
 
 	# Required rewrite rules
 	location @handler {
