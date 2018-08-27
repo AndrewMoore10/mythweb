@@ -4,6 +4,20 @@ var label = null;
 jQuery(document).ready(function(){
     player = document.getElementById("videoPlayer");
     label = document.getElementById("playSpeedLabel");
+
+    player.addEventListener('timeupdate', function() {
+      if(this.currentTime > 3){
+          let baseURL = window.location.protocol + '//' + window.location.host + window.location.pathname;
+          window.history.replaceState("", "", baseURL + "?t=" + Math.floor(this.currentTime) );
+          // window.location.assign();
+      }
+      // this.currentTime;
+    }, false);
+    if(getUrlParam("t")){
+        player.addEventListener('loadedmetadata', function() {
+          this.currentTime = Math.floor(Number(getUrlParam("t")) );
+        }, false);
+    }
 });
 
 function changeVideoSpeed(direction) {
@@ -171,4 +185,20 @@ function padLeft( str, n){
    var out = pad.substring(0, pad.length - str.length) + str + "";
    //alert (out);
    return out;
+}
+
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
 }

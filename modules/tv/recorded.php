@@ -55,6 +55,7 @@
 
 // Queries for a specific program title
     isset($_REQUEST['title'])    or $_REQUEST['title']    = isset($_REQUEST['refresh']) ? '' : $_SESSION['recorded_title'];
+    isset($_REQUEST['chanid'])    or $_REQUEST['chanid']    = isset($_REQUEST['refresh']) ? '' : $_SESSION['recorded_chanid'];
     isset($_REQUEST['recgroup']) or $_REQUEST['recgroup'] = isset($_REQUEST['refresh']) ? '' : $_SESSION['recorded_recgroup'];
 
 // Parse the program list
@@ -95,8 +96,13 @@
         // Skip programs the user doesn't want to look at
             if ($_REQUEST['title'] && $_REQUEST['title'] != $record[0])
                 continue;
+            if ($_REQUEST['chanid'] && $_REQUEST['chanid'] != $record[8])
+                continue;
             if ($_REQUEST['recgroup'] && $_REQUEST['recgroup'] != $record[30])
                 continue;
+            if ($_REQUEST['targettime'] && ( $_REQUEST['targettime'] < $record[27] || $_REQUEST['targettime'] > $record[28] )  )
+                continue;
+
         // Hide LiveTV recordings from the default view
             if (empty($_REQUEST['recgroup']) && ($record[30] == 'LiveTV' || $record[30] == 'Deleted'))
                 continue;

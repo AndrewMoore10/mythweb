@@ -307,6 +307,19 @@ EOM;
     var files = new Array();
 
 <?php
+    if ( count($All_Shows)==1 ) {
+        $show = $All_Shows[0];
+        $inset = $_REQUEST['targettime'] - $record[27];
+?>
+    //alert('one show listed <?php echo root_url ?>tv/detail/<?php echo $show->chanid, '/', $show->recstartts ?>?t=<?php echo $inset ?>');
+    // alert(' vs <?php echo $record[28] ?> vs <?php echo $record[27] ?>');
+
+    window.location.replace("<?php echo root_url ?>tv/detail/<?php echo $show->chanid, '/', $show->recstartts ?>?t=<?php echo $inset ?>");
+
+<?php
+    }
+?>
+<?php
     foreach ($All_Shows as $show) {
 ?>
     file = new Object();
