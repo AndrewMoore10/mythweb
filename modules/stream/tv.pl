@@ -17,6 +17,10 @@
 # Which show are we streaming?
     our $chanid    = url_param('chanid');
     our $starttime = url_param('starttime');
+    our $intime = url_param('i');
+    our $outtime = url_param('o');
+    our $format = url_param('f');
+    our $resolution = url_param('r');
     if ($Path[1]) {
         $chanid    = $Path[1];
         $starttime = $Path[2];

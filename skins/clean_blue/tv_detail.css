@@ -1,11 +1,11 @@
-#x-info {
+/*#x-info {
     float:              left;
     padding:            0px;
     width:              45em;
     margin:             10px 0px 10px 10px;
     background-color:   #101a29;
     color:              #E0E0FF;
-}
+}*/
 
 .x-channel {
     width:              8em;
@@ -117,10 +117,10 @@
 }
 
 #x-downloads {
-    float:              left;
+/*    float:              left;*/
     padding:            0px;
     min-width:          350px;
-    max-width:          500px;
+/*    max-width:          500px;*/
     margin:             10px 0px 10px 10px;
 }
 #x-downloads img {
@@ -213,13 +213,16 @@
 }
 
 #schedule {
+    position: absolute;
+    left:1em;
+    top:10em;
     width:                              auto !important;
     max-width:                          48%;
 }
 
 #div-x-info {
-    position:                           absolute;
-    right:                              0em;
+    position:                           static;
+    /*right:                              0em;*/
     -moz-border-radius:                 8px;
     -webkit-border-radius:              8px;
     -moz-box-shadow:                    1px 1px 5px #999;
@@ -230,17 +233,18 @@
     margin-left:                        1em;
     margin-right:                       1em;
     margin-bottom:                      3em;
+    margin : auto;
     width:                              auto !important;
-    max-width:                          48%;
+    max-width:                          800px;
 }
-
+/*
 #x-info {
     width:                              auto !important;
     margin-right:                       1em;
     background-color:                   #c5d8e9;
     color:                              #000000;
     border:                             none;
-}
+}*/
 
 #x-info *,
 #x-progflags,
@@ -306,17 +310,21 @@
     -webkit-box-shadow:                 1px 1px 5px #999;
     box-shadow:                         1px 1px 5px #999;
     background-color:                   #c5d8e9;
+    padding-right:                        1em;
+    padding-top:                        1em;
     padding-bottom:                     1em;
     margin-left:                        1em;
     margin-right:                       1em;
+    margin : auto;
     margin-bottom:                      3em;
-    width:                              auto !important;
-    max-width:                          48%;
+    width:                              90% !important;
+    max-width:                          800px;
 }
 
 #x-downloads div.x-pixmap {
     text-align: center;
     vertical-align: middle;
+    margin: auto;
 }
 
 #x-downloads div.x-links {
@@ -327,4 +335,61 @@
 div.x-links a {
     margin-right: .25em !important;
     margin-left: .25em !important;
+}
+
+#exportTable td {
+}
+#exportTable td.lbtext a{
+    top:0px;
+}
+#exportTable td.lbtext{
+    text-align: right;
+}
+#exportTable td.lbexport a{
+    top:0px;
+    border:solid 1px;
+}
+#exportTable td.lbexport{
+    text-align: center;
+}
+#exportBG{
+
+    background: rgba(0,0,0,.5);
+    z-index: 98;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    position:fixed;
+    display:none;
+}
+#exportWindow{
+    background-color: green;
+    opacity: 1.0;
+    z-index: 99;
+    left:40%;
+    top:40%;
+    position:absolute;
+    width:300px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow:                         1px 1px 5px #999;
+    background-color:                   #c5d8e9;
+}
+
+#exportWindow table{
+    width:100%;
+}
+
+#exportWindow table td{
+    width:50%;
+}
+
+#exportWindow table td select{
+    width:100%;
+}
+
+#videoPlayer {
+    width:95%;
 }
