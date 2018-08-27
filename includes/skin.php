@@ -35,12 +35,12 @@
     $skin = $_SESSION['skin'];
 
     if (isset($_REQUEST['RESET_SKIN']))
-        $skin = _or($_REQUEST['RESET_SKIN'], 'default');
+        $skin = _or($_REQUEST['RESET_SKIN'], 'clean_blue');
     elseif (isMobileUser())
         $skin = 'wap';
 
     if (!file_exists('skins/'.$skin.'/img/'))
-        $skin = 'default';
+        $skin = 'clean_blue';
 
 // We do want to over-ride the template for some paths.
 // We do this after setting because certain templates
