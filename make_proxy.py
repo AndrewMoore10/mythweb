@@ -189,7 +189,8 @@ def runjob(jobid=None, chanid=None, starttime=None, tzoffset=None):
         sys.exit(1)
 
     infile = os.path.join(sg.dirname, rec.basename)
-    outfile = '%s.mp4' % infile.rsplit('.',1)[0]
+    outfile = '%s.mp4' % os.path.join(sg.dirname, "proxy", rec.basename).rsplit('.',1)[0]
+    # outfile = '%s.mp4' % infile.rsplit('.',1)[0]
 
     framerate = 59.94
 
